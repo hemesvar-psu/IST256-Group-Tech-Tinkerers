@@ -1,99 +1,108 @@
+<!-- Developed by Intizor Hoshimova -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gadget Gurus</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gadget Gurus - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-        <i class="fas fa-microchip"></i> <h1>Gadget Gurus</h1>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item mx-3">
-                    <a class="nav-link active" href="index.html">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="shopper-management.html">
-                        <i class="fas fa-user-edit"></i> Shopper Management
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="container">
-        <h1 class="hero-title">🔧 Welcome to Gadget Gurus</h1>
-        <p class="hero-subtitle">Your Premier Destination for Cutting-Edge Technology</p>
-        <p class="hero-description">
-            Discover the latest gadgets, electronics, and tech accessories.
-            From smartphones to smart home devices, we've got everything you need
-            to stay connected and ahead of the curve.
-        </p>
-        <a href="shopper-management.html" class="btn btn-primary btn-lg">
-            <i class="fas fa-user-plus"></i> Register Now
-        </a>
-    </div>
-</section>
-
-<!-- Features Section -->
-<section class="features-section">
-    <div class="container">
-        <h2 class="section-title text-center">Why Choose Gadget Gurus?</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Latest Technology</h3>
-                    <p>Stay ahead with the newest gadgets and cutting-edge tech products on the market.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Quality Guaranteed</h3>
-                    <p>All products come with manufacturer warranty and our satisfaction guarantee.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Expert Support</h3>
-                    <p>Our tech experts are here to help you choose the perfect gadget for your needs.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Call to Action -->
-        <div class="cta-section">
-            <h3>Ready to Get Started?</h3>
-            <a href="shopper-management.html" class="btn btn-primary btn-lg">
-                <i class="fas fa-arrow-right"></i> Go to Shopper Management
+      <i class="fas fa-microchip"></i>
+      <h1 class="mb-0 ms-2">Gadget Gurus</h1>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">
+              <i class="fas fa-home"></i> Home
             </a>
-        </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shopper-management.html">
+              <i class="fas fa-user-edit"></i> Shopper Management
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-</section>
+  </nav>
 
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <p><i class="fas fa-microchip"></i> <strong>Gadget Gurus</strong> - Your Tech Experts</p>
-        <p>&copy; 2025 Gadget Gurus. All rights reserved.</p>
+  <!-- Hero Section -->
+  <section class="hero-section py-5">
+    <div class="container text-center py-5">
+      <h1 class="display-4 fw-bold mb-3">🔧 Welcome to Gadget Gurus</h1>
+      <p class="lead mb-4">Your One-Stop Shop for All Things Tech</p>
+      <p class="mb-4">Discover the latest gadgets, electronics, and tech accessories to enhance your digital lifestyle.</p>
+      <a href="shopper-management.html" class="btn btn-primary btn-lg">
+        <i class="fas fa-user-plus me-2"></i>Register Now
+      </a>
     </div>
-</footer>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Why Choose Gadget Gurus?</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+              <i class="fas fa-tools fa-3x mb-3 text-primary"></i>
+              <h3 class="h4">Expert Service</h3>
+              <p>Our team of tech experts is here to help you find the perfect gadgets for your needs.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+              <i class="fas fa-shield-alt fa-3x mb-3 text-primary"></i>
+              <h3 class="h4">Quality Products</h3>
+              <p>We offer only the highest quality tech products from trusted brands.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center p-4">
+              <i class="fas fa-headset fa-3x mb-3 text-primary"></i>
+              <h3 class="h4">24/7 Support</h3>
+              <p>Our dedicated support team is available round the clock to assist you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section py-5">
+    <div class="container text-center py-4">
+      <h2 class="mb-4">Ready to Upgrade Your Tech?</h2>
+      <p class="lead mb-4">Join thousands of satisfied customers who trust Gadget Gurus for their tech needs.</p>
+      <a href="shopper-management.html" class="btn btn-primary btn-lg">
+        <i class="fas fa-user-edit me-2"></i>Go to Shopper Management
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2023 Gadget Gurus. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
