@@ -10,6 +10,7 @@
 </head>
 <body>
 <!-- HTML Developer: [Prudhivi Jandhyala] -->
+<!-- JSON & JavaScript Developer: [Hemesvar Jayanthi Narendran] -->
 
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -57,94 +58,48 @@
 
                         <!-- Shopper Form -->
                         <form id="shopperForm" novalidate>
-                            <!-- Shopper Email (Required) -->
                             <div class="mb-3">
-                                <label for="shopperEmail" class="form-label fw-semibold">
-                                    Shopper Email Address <span class="text-danger">*</span>
-                                </label>
-                                <input
-                                        type="email"
-                                        class="form-control"
-                                        id="shopperEmail"
-                                        placeholder="hello@world.com"
-                                        required
-                                >
-                                <div class="invalid-feedback" id="emailError"></div>
+                                <label for="shopperEmail" class="form-label fw-semibold">Shopper Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="shopperEmail" placeholder="hello@world.com" required>
                             </div>
 
-                            <!-- Shopper Name (Required) -->
                             <div class="mb-3">
-                                <label for="shopperName" class="form-label fw-semibold">
-                                    Shopper Name <span class="text-danger">*</span>
-                                </label>
-                                <input
-                                        type="text"
-                                        class="form-control"
-                                        id="shopperName"
-                                        placeholder="Hello World"
-                                        required
-                                >
-                                <div class="invalid-feedback" id="nameError"></div>
+                                <label for="shopperName" class="form-label fw-semibold">Shopper Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="shopperName" placeholder="Hello World" required>
                             </div>
 
-                            <!-- Shopper Contact Phone (Optional) -->
                             <div class="mb-3">
-                                <label for="shopperPhone" class="form-label fw-semibold">
-                                    Shopper Contact Phone Number
-                                    <span class="badge bg-secondary ms-2">Optional</span>
-                                </label>
-                                <input
-                                        type="tel"
-                                        class="form-control"
-                                        id="shopperPhone"
-                                        placeholder="1127781234"
-                                >
-                                <div class="invalid-feedback" id="phoneError"></div>
+                                <label for="shopperPhone" class="form-label fw-semibold">Shopper Contact Phone Number <span class="badge bg-secondary ms-2">Optional</span></label>
+                                <input type="tel" class="form-control" id="shopperPhone" placeholder="1127781234">
                             </div>
 
-                            <!-- Shopper Age (Required) -->
                             <div class="mb-3">
-                                <label for="shopperAge" class="form-label fw-semibold">
-                                    Shopper Age <span class="text-danger">*</span>
-                                </label>
-                                <input
-                                        type="number"
-                                        class="form-control"
-                                        id="shopperAge"
-                                        placeholder="45"
-                                        required
-                                        min="13"
-                                        max="120"
-                                >
-                                <div class="invalid-feedback" id="ageError"></div>
+                                <label for="shopperAge" class="form-label fw-semibold">Shopper Age <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" id="shopperAge" placeholder="45" required min="13" max="120">
                             </div>
 
-                            <!-- Shopper Address (Required) -->
                             <div class="mb-4">
-                                <label for="shopperAddress" class="form-label fw-semibold">
-                                    Shopper Address <span class="text-danger">*</span>
-                                </label>
-                                <input
-                                        type="text"
-                                        class="form-control"
-                                        id="shopperAddress"
-                                        placeholder="123 College Ave"
-                                        required
-                                >
-                                <div class="invalid-feedback" id="addressError"></div>
+                                <label for="shopperAddress" class="form-label fw-semibold">Shopper Address <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="shopperAddress" placeholder="123 College Ave" required>
                             </div>
 
-                            <!-- Submit Button -->
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary btn-lg">
-                                    <i class="fas fa-check me-2"></i>Sign Up
-                                </button>
-                                <button type="reset" class="btn btn-outline-secondary">
-                                    <i class="fas fa-redo me-2"></i>Clear Form
-                                </button>
+                                <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-check me-2"></i>Sign Up</button>
+                                <button type="reset" class="btn btn-outline-secondary"><i class="fas fa-redo me-2"></i>Clear Form</button>
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JSON Output Section -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-8">
+                <h3 class="text-center mb-3">Generated JSON Document</h3>
+                <pre id="jsonOutput" class="bg-dark text-light p-3 rounded" style="min-height:150px; overflow:auto;">{/* JSON will appear here */}</pre>
+                <div class="text-center mt-3">
+                    <button class="btn btn-danger" id="clearData"><i class="fas fa-trash me-2"></i>Clear All Saved Shoppers</button>
                 </div>
             </div>
         </div>
@@ -167,6 +122,60 @@
     </div>
 </footer>
 
-<!-- Bootstrap JS and dependencies -->
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+<!-- JSON + JavaScript Functionality -->
+<script>
+/* JSON Developer: Hemesvar Jayanthi Narendran */
+(function() {
+    const form = document.getElementById('shopperForm');
+    const output = document.getElementById('jsonOutput');
+    const clearBtn = document.getElementById('clearData');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Validate fields
+        if (!form.checkValidity()) {
+            form.classList.add('was-validated');
+            return;
+        }
+
+        // Build JSON object
+        const shopper = {
+            email: document.getElementById('shopperEmail').value.trim(),
+            name: document.getElementById('shopperName').value.trim(),
+            phone: document.getElementById('shopperPhone').value.trim() || null,
+            age: Number(document.getElementById('shopperAge').value),
+            address: document.getElementById('shopperAddress').value.trim(),
+            updatedAt: new Date().toISOString()
+        };
+
+        // Display JSON on page
+        output.textContent = JSON.stringify(shopper, null, 2);
+
+        // Save to localStorage (update if exists)
+        const key = 'shoppers';
+        const shoppers = JSON.parse(localStorage.getItem(key) || '[]');
+        const idx = shoppers.findIndex(s => s.email.toLowerCase() === shopper.email.toLowerCase());
+        if (idx >= 0) shoppers[idx] = shopper; else shoppers.push(shopper);
+        localStorage.setItem(key, JSON.stringify(shoppers));
+
+        form.reset();
+        form.classList.remove('was-validated');
+    });
+
+    // Clear localStorage shoppers
+    clearBtn.addEventListener('click', () => {
+        localStorage.removeItem('shoppers');
+        output.textContent = '{/* JSON will appear here */}';
+        alert('All saved shoppers have been cleared.');
+    });
+})();
+</script>
+</body>
+</html>
+
+
