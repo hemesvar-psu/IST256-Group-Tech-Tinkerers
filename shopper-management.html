@@ -32,6 +32,11 @@
                         <i class="fas fa-user-edit"></i> Shopper Management
                     </a>
                 </li>
+                <li class = "nav-item">
+                    <a class="nav-link active" href="product-management.html">
+                        <i class="fas fa-cart-arrow-down"></i> Product Management
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -128,55 +133,52 @@
 
 <!-- JSON + JavaScript Functionality -->
 <script>
-/* JSON Developer: Hemesvar Jayanthi Narendran */
-(function() {
-    const form = document.getElementById('shopperForm');
-    const output = document.getElementById('jsonOutput');
-    const clearBtn = document.getElementById('clearData');
+    /* JSON Developer: Hemesvar Jayanthi Narendran */
+    (function() {
+        const form = document.getElementById('shopperForm');
+        const output = document.getElementById('jsonOutput');
+        const clearBtn = document.getElementById('clearData');
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        // Validate fields
-        if (!form.checkValidity()) {
-            form.classList.add('was-validated');
-            return;
-        }
+            // Validate fields
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return;
+            }
 
-        // Build JSON object
-        const shopper = {
-            email: document.getElementById('shopperEmail').value.trim(),
-            name: document.getElementById('shopperName').value.trim(),
-            phone: document.getElementById('shopperPhone').value.trim() || null,
-            age: Number(document.getElementById('shopperAge').value),
-            address: document.getElementById('shopperAddress').value.trim(),
-            updatedAt: new Date().toISOString()
-        };
+            // Build JSON object
+            const shopper = {
+                email: document.getElementById('shopperEmail').value.trim(),
+                name: document.getElementById('shopperName').value.trim(),
+                phone: document.getElementById('shopperPhone').value.trim() || null,
+                age: Number(document.getElementById('shopperAge').value),
+                address: document.getElementById('shopperAddress').value.trim(),
+                updatedAt: new Date().toISOString()
+            };
 
-        // Display JSON on page
-        output.textContent = JSON.stringify(shopper, null, 2);
+            // Display JSON on page
+            output.textContent = JSON.stringify(shopper, null, 2);
 
-        // Save to localStorage (update if exists)
-        const key = 'shoppers';
-        const shoppers = JSON.parse(localStorage.getItem(key) || '[]');
-        const idx = shoppers.findIndex(s => s.email.toLowerCase() === shopper.email.toLowerCase());
-        if (idx >= 0) shoppers[idx] = shopper; else shoppers.push(shopper);
-        localStorage.setItem(key, JSON.stringify(shoppers));
+            // Save to localStorage (update if exists)
+            const key = 'shoppers';
+            const shoppers = JSON.parse(localStorage.getItem(key) || '[]');
+            const idx = shoppers.findIndex(s => s.email.toLowerCase() === shopper.email.toLowerCase());
+            if (idx >= 0) shoppers[idx] = shopper; else shoppers.push(shopper);
+            localStorage.setItem(key, JSON.stringify(shoppers));
 
-        form.reset();
-        form.classList.remove('was-validated');
-    });
+            form.reset();
+            form.classList.remove('was-validated');
+        });
 
-    // Clear localStorage shoppers
-    clearBtn.addEventListener('click', () => {
-        localStorage.removeItem('shoppers');
-        output.textContent = '{/* JSON will appear here */}';
-        alert('All saved shoppers have been cleared.');
-    });
-})();
+        // Clear localStorage shoppers
+        clearBtn.addEventListener('click', () => {
+            localStorage.removeItem('shoppers');
+            output.textContent = '{/* JSON will appear here */}';
+            alert('All saved shoppers have been cleared.');
+        });
+    })();
 </script>
 </body>
 </html>
-
-
-
