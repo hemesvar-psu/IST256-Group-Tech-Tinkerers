@@ -1,17 +1,17 @@
+<!-- Developed by Intizor Hoshimova -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gadget Gurus - Product Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- HTML Developer: [Prudhivi Jandhyala] -->
 
-
-<!-- Navigation Bar-->
+<!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <i class="fas fa-microchip"></i>
@@ -21,34 +21,89 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="index.html">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="shopper-management.html">
-                        <i class="fas fa-user-edit"></i> Shopper Management
-                    </a>
-                </li>
-                <li class = "nav-item">
-                    <a class="nav-link active" href="product-management.html">
-                        <i class="fas fa-cart-arrow-down"></i> Product Management
-                    </a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="shopper-management.html"><i class="fas fa-user-edit"></i> Shopper Management</a></li>
+                <li class="nav-item"><a class="nav-link active" href="product-management.html"><i class="fas fa-cart-arrow-down"></i> Product Management</a></li>
+                <li class = "nav-item"><a class = "nav-link active" href = "shopping-cart.html"><i class="fas fa-shopping-cart"></i> Shopping Cart</a>
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- Page Header -->
+<!-- Hero Section -->
 <section class="hero-section py-5">
     <div class="container text-center py-3">
-        <h1 class="display-5 fw-bold mb-3"> Product Management</h1>
-        <p class="lead mb-2">Order the Product You Desire</p>
+        <h1 class="display-5 fw-bold mb-3">Product Management</h1>
+        <p class="lead mb-2">Manage and Update Product Details</p>
     </div>
 </section>
 
+<!-- Product Management Form -->
+<section class="py-5">
+    <div class="container">
+        <div class="form-card">
+            <div class="form-header text-center mb-4">
+                <h2><i class="fas fa-box-open me-2"></i>Product Details</h2>
+            </div>
+
+            <form id="productForm">
+                <!-- Product ID -->
+                <div class="mb-3">
+                    <label for="productId" class="form-label required-label">Product ID</label>
+                    <input type="text" class="form-control" id="productId" placeholder="Enter Product ID" required>
+                </div>
+
+                <!-- Product Description -->
+                <div class="mb-3">
+                    <label for="productDescription" class="form-label required-label">Product Description</label>
+                    <textarea class="form-control" id="productDescription" rows="3" placeholder="Enter Product Description" required></textarea>
+                </div>
+
+                <!-- Product Category -->
+                <div class="mb-3">
+                    <label for="productCategory" class="form-label required-label">Product Category</label>
+                    <select class="form-select" id="productCategory" required>
+                        <option value="" selected disabled>Choose Category</option>
+                        <option>Electronics</option>
+                        <option>Accessories</option>
+                        <option>Home Appliances</option>
+                        <option>Gaming</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <!-- Product Unit of Measure -->
+                <div class="mb-3">
+                    <label for="productUOM" class="form-label required-label">Product Unit of Measure</label>
+                    <select class="form-select" id="productUOM" required>
+                        <option value="" selected disabled>Select Unit</option>
+                        <option>Each</option>
+                        <option>Box</option>
+                        <option>Pack</option>
+                        <option>Kg</option>
+                        <option>Liters</option>
+                    </select>
+                </div>
+
+                <!-- Product Price -->
+                <div class="mb-3">
+                    <label for="productPrice" class="form-label required-label">Product Price ($)</label>
+                    <input type="number" class="form-control" id="productPrice" placeholder="Enter Product Price" step="0.01" min="0" required>
+                </div>
+
+                <!-- Product Weight -->
+                <div class="mb-3">
+                    <label for="productWeight" class="form-label">Product Weight (Optional)</label>
+                    <input type="text" class="form-control" id="productWeight" placeholder="Enter Product Weight">
+                </div>
+
+                <!-- Buttons -->
+                <button type="submit" class="btn btn-submit mt-3">Submit</button>
+                <button type="reset" class="btn btn-reset mt-2">Reset</button>
+            </form>
+        </div>
+    </div>
+</section>
 
 <!-- Footer -->
 <footer class="footer py-4 mt-5">
@@ -57,5 +112,20 @@
     </div>
 </footer>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+<!-- Price formatting script -->
+<script>
+    document.getElementById('productPrice').addEventListener('input', function()
+    {
+        const value = parseFloat(this.value);
+        if (!isNaN(value))
+        {
+            this.value = value.toFixed(2);
+        }
+    });
+</script>
 </body>
 </html>
