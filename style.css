@@ -207,3 +207,42 @@ body
   content: " *";
   color: red;
 }
+
+
+/* Shopping Cart Page */
+.cart-table th 
+{
+  background-color: var(--dark-blue);
+  color: white;
+  text-align: center;
+}
+
+.cart-table td 
+{
+  text-align: center;
+  vertical-align: middle;
+}
+
+.cart-table input.quantity 
+{
+  max-width: 80px;
+  margin: auto;
+  text-align: center;
+}
+
+.form-card h4 
+{
+  color: var(--dark-blue);
+}
+
+.btn-primary 
+{
+  background-color: var(--medium-blue);
+  border: none;
+}
+
+.btn-primary:hover 
+{
+  background-color: var(--dark-blue);
+}
+
