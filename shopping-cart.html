@@ -1,119 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gadget Gurus - Shopping Cart</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gadget Gurus - Shopping Cart</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- jQuery (required for AJAX) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
+  <!-- HTML Developer: [Prudhivi Jandhyala] -->
+  <!-- jQuery & AJAX Developer: [Hemesvar Jayanthi Narendran] -->
+  <!-- CSS & Bootstrap Developer: [Intizor Hoshimova] -->
 
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-        <i class="fas fa-microchip"></i>
-        <h1 class="mb-0 ms-2">Gadget Gurus</h1>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="shopper-management.html"><i class="fas fa-user-edit"></i> Shopper Management</a></li>
-                <li class="nav-item"><a class="nav-link active" href="product-management.html"><i class="fas fa-cart-arrow-down"></i> Product Management</a></li>
-                <li class = "nav-item"><a class = "nav-link active" href = "shopping-cart.html"><i class="fas fa-shopping-cart"></i> Shopping Cart</a>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Hero Section -->
-<section class="hero-section py-5">
-    <div class="container text-center py-3">
-        <h1 class="display-5 fw-bold mb-3">Shopping Cart</h1>
-        <p class="lead mb-2">Manage and Update Cart Details</p>
-    </div>
-</section>
-
-<!-- Shopping Cart Form -->
-<section class="py-5">
-    <div class="container">
-        <div class="form-card">
-            <div class="form-header text-center mb-4">
-                <h2><i class="fas fa-box-open me-2"></i>Cart Details</h2>
-            </div>
-
-
-<!-- Shopping Cart Section -->
-<section class="py-5">
-  <div class="container">
-    <div class="form-card">
-      <div class="form-header text-center mb-4">
-        <h2><i class="fas fa-box-open me-2"></i>Cart Details</h2>
+      <i class="fas fa-microchip"></i>
+      <h1 class="mb-0 ms-2">Gadget Gurus</h1>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="shopper-management.html"><i class="fas fa-user-edit"></i> Shopper Management</a></li>
+          <li class="nav-item"><a class="nav-link" href="product-management.html"><i class="fas fa-cart-arrow-down"></i> Product Management</a></li>
+          <li class="nav-item"><a class="nav-link active" href="shopping-cart.html"><i class="fas fa-shopping-cart"></i> Shopping Cart</a></li>
+        </ul>
       </div>
-<!-- Added by Intizor Hoshimova -->
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section py-5">
+    <div class="container text-center">
+      <h1 class="display-5 fw-bold mb-3">🛒 Shopping Cart</h1>
+      <p class="lead mb-2">Add, update, and review your selected products</p>
+    </div>
+  </section>
+
+  <!-- Shopping Cart Section -->
+  <section class="py-4">
+    <div class="container">
+
+      <!-- Product Add Section -->
+      <div class="input-group mb-4">
+        <select id="productSelect" class="form-select">
+          <option value="" disabled selected>Select Product</option>
+          <option value="001" data-name="Mens Jeans" data-price="59.99">Mens Jeans - $59.99</option>
+          <option value="004" data-name="Womens T-Shirt" data-price="19.99">Womens T-Shirt - $19.99</option>
+          <option value="007" data-name="Wireless Mouse" data-price="14.99">Wireless Mouse - $14.99</option>
+        </select>
+        <button id="addProduct" class="btn btn-primary"><i class="fas fa-plus"></i> Add</button>
+      </div>
+
+      <!-- Shopping Cart Table -->
       <div class="table-responsive">
-        <table class="table table-striped align-middle cart-table">
+        <table class="table table-striped align-middle">
           <thead class="table-dark">
-          <tr>
-            <th>Product ID</th>
-            <th>Product Name</th>
-            <th>Price ($)</th>
-            <th>Quantity</th>
-            <th>Total ($)</th>
-          </tr>
+            <tr>
+              <th>Product ID</th>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
           </thead>
-          <!-- Product Placeholder -->
-          <tbody id="cart-body">
-          <tr>
-            <td> </td>
-            <td> </td>
-            <td class="price"> </td>
-            <td><input type="number" class="form-control quantity" value="1" min="1"></td>
-            <td class="total"> </td>
-          </tr>
-          </tbody>
+          <tbody id="cart-body"></tbody>
         </table>
       </div>
+
+      <!-- Cart Total -->
+      <div class="text-end mt-3">
+        <h5>Total: $<span id="cart-total">0.00</span></h5>
+        <button id="checkout" class="btn btn-success mt-2"><i class="fas fa-credit-card me-2"></i>Checkout</button>
+      </div>
+
+      <!-- JSON Output -->
+      <div class="mt-4">
+        <h4>Shopping Cart JSON</h4>
+        <pre id="jsonOutput" class="bg-dark text-light p-3 rounded" style="min-height:150px;">{/* JSON will appear here */}</pre>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- By PJ -->
-<!-- Footer -->
-<footer class="footer py-4 mt-5">
-  <div class="container text-center">
-    <p class="mb-0">&copy; 2023 Gadget Gurus. All rights reserved.</p>
-  </div>
-</footer>
+  <!-- Footer -->
+  <footer class="footer py-4 mt-5 bg-light border-top">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2025 Gadget Gurus. All rights reserved.</p>
+    </div>
+  </footer>
 
-<!-- Added by Intizor -->
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Cart Calculation Script -->
-<script>
-  const updateTotals = () =>
-  {
-    let cartTotal = 0;
-    document.querySelectorAll("#cart-body tr").forEach(row =>
-    {
-      const price = parseFloat(row.querySelector(".price").textContent);
-      const qty = parseInt(row.querySelector(".quantity").value);
-      const total = price * qty;
-      row.querySelector(".total").textContent = total.toFixed(2);
-      cartTotal += total;
+  <!-- Shopping Cart Logic (Hemesvar) -->
+  <script>
+    $(document).ready(function () {
+      const cart = [];
+
+      // Add product to cart
+      $("#addProduct").click(function () {
+        const selected = $("#productSelect option:selected");
+        const id = selected.val();
+        const name = selected.data("name");
+        const price = parseFloat(selected.data("price"));
+
+        if (!id) {
+          alert("Please select a product.");
+          return;
+        }
+
+        // Check if already in cart
+        const existing = cart.find(item => item.productId === id);
+        if (existing) {
+          existing.quantity++;
+        } else {
+          cart.push({ productId: id, productName: name, price: price, quantity: 1 });
+        }
+
+        updateCartTable();
+      });
+
+      // Update Cart Table
+      function updateCartTable() {
+        const tbody = $("#cart-body");
+        tbody.empty();
+        let total = 0;
+
+        cart.forEach((item, index) => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+
+          const row = `
+            <tr>
+              <td>${item.productId}</td>
+              <td>${item.productName}</td>
+              <td>$${item.price.toFixed(2)}</td>
+              <td><input type="number" min="1" class="form-control qty" data-index="${index}" value="${item.quantity}"></td>
+              <td>$${itemTotal.toFixed(2)}</td>
+              <td><button class="btn btn-danger btn-sm remove" data-index="${index}"><i class="fas fa-trash"></i> Remove</button></td>
+            </tr>
+          `;
+          tbody.append(row);
+        });
+
+        $("#cart-total").text(total.toFixed(2));
+        $("#jsonOutput").text(JSON.stringify(cart, null, 2));
+      }
+
+      // Quantity change event
+      $(document).on("change", ".qty", function () {
+        const index = $(this).data("index");
+        const newQty = parseInt($(this).val());
+        if (newQty > 0) {
+          cart[index].quantity = newQty;
+        }
+        updateCartTable();
+      });
+
+      // Remove product
+      $(document).on("click", ".remove", function () {
+        const index = $(this).data("index");
+        cart.splice(index, 1);
+        updateCartTable();
+      });
+
+      // Checkout → Simulate AJAX
+      $("#checkout").click(function () {
+        if (cart.length === 0) {
+          alert("Your cart is empty!");
+          return;
+        }
+
+        const jsonData = JSON.stringify(cart);
+
+        $.ajax({
+          url: "https://httpbin.org/post", // simulated POST endpoint
+          type: "POST",
+          data: jsonData,
+          contentType: "application/json",
+          success: function (response) {
+            $("#jsonOutput").text(JSON.stringify(cart, null, 2));
+            alert("Checkout successful! JSON sent via AJAX.");
+            console.log(response);
+          },
+          error: function () {
+            alert("There was an error sending data.");
+          }
+        });
+      });
     });
-    document.getElementById("cart-total").textContent = cartTotal.toFixed(2);
-  };
-
-  document.querySelectorAll(".quantity").forEach(input => {
-    input.addEventListener("change", updateTotals);
-  });
-</script>
-
+  </script>
 </body>
-
 </html>
