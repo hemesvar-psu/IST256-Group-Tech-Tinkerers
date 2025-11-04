@@ -55,23 +55,26 @@
                     <input type="text" class="form-control" id="shippingAddress" placeholder="Enter Address" required>
                 </div>
 
-                <!-- Shipping City -->
-                <div class="mb-3">
-                    <label for="shippingCity" class="form-label required-label">City:</label>
-                    <textarea class="form-control" id="shippingCity" rows="3" placeholder="Enter City" required></textarea>
-                </div>
+        <!-- Shipping City and Shipping State-->
+        <!-- Changed by Intizor — Applied Bootstrap grid to City/State fields -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="shippingCity" class="form-label required-label">City:</label>
+                <input type="text" class="form-control" id="shippingCity" placeholder="Enter City" required>
+            </div>
+        <div class="col-md-6">
+            <label for="shippingState" class="form-label required-label">State:</label>
+            <input type="text" class="form-control" id="shippingState" placeholder="Enter State" required>
+          </div>
+        </div>
 
-                <!-- Shipping State -->
-                <div class="mb-3">
-                    <label for="shippingState" class="form-label required-label">State:</label>
-                    <textarea class="form-control" id="shippingState" rows="3" placeholder="Enter State" required></textarea>
-                </div>
-
-                <!-- Shipping Zipcode -->
-                <div class="mb-3">
-                    <label for="shippingZipcode" class="form-label required-label">Zipcode:</label>
-                    <textarea class="form-control" id="shippingZipcode" rows="3" placeholder="Enter Zipcode" required></textarea>
-                </div>
+        <!-- Shipping Zipcode -->
+        <!-- Changed by Intizor — Adjusted Zipcode field width and Made Shipping Carrier Category fit next to it -->
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="shippingZipcode" class="form-label required-label">Zipcode:</label>
+            <input type="text" class="form-control" id="shippingZipcode" placeholder="Enter Zipcode" required>
+          </div>
 
                 <!-- Shipping Carrier Category -->
                 <div class="mb-3">
@@ -120,4 +123,5 @@
 </footer>
 
 </body>
+
 </html>
