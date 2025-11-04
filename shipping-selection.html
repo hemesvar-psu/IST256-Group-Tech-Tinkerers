@@ -1,128 +1,155 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:Code="http://www.w3.org/1999/xhtml" xmlns:Zipcode="http://www.w3.org/1999/xhtml">
+<html lang="en" ng-app="shippingApp">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gadget Gurus - Shipping Selection</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gadget Gurus - Shipping Selection</title>
+
+  <!-- Bootstrap & FontAwesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- AngularJS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 </head>
-<body>
 
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<body ng-controller="ShippingController">
+  <!-- HTML Developer: [Prudhivi Jandhyala] -->
+  <!-- AngularJS Developer: [Hemesvar Jayanthi Narendran] -->
+  <!-- Bootstrap & CSS Developer: [Intizor Hoshimova] -->
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-        <i class="fas fa-microchip"></i>
-        <h1 class="mb-0 ms-2">Gadget Gurus</h1>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="shopper-management.html"><i class="fas fa-user-edit"></i> Shopper Management</a></li>
-                <li class="nav-item"><a class="nav-link active" href="product-management.html"><i class="fas fa-cart-arrow-down"></i> Product Management</a></li>
-                <li class = "nav-item"><a class = "nav-link active" href = "shopping-cart.html"><i class="fas fa-shopping-cart"></i> Shopping Cart</a>
-                <li class = "nav-item"><a class = "nav-link active" href = "shipping-selection.html"><i class ="fas fa-truck"></i>Shipping Selection</a></li>
-            </ul>
-        </div>
+      <i class="fas fa-microchip"></i>
+      <h1 class="mb-0 ms-2">Gadget Gurus</h1>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="shopper-management.html"><i class="fas fa-user-edit"></i> Shopper Management</a></li>
+          <li class="nav-item"><a class="nav-link" href="product-management.html"><i class="fas fa-cart-arrow-down"></i> Product Management</a></li>
+          <li class="nav-item"><a class="nav-link" href="shopping-cart.html"><i class="fas fa-shopping-cart"></i> Shopping Cart</a></li>
+          <li class="nav-item"><a class="nav-link active" href="shipping-selection.html"><i class="fas fa-truck"></i> Shipping Selection</a></li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
-
-<!-- Hero Section -->
-<section class="hero-section py-5">
+  <!-- Hero Section -->
+  <section class="hero-section py-5">
     <div class="container text-center py-3">
-        <h1 class="display-5 fw-bold mb-3">Shipping Selection</h1>
-        <p class="lead mb-2">Manage and Update Shipping Details</p>
+      <h1 class="display-5 fw-bold mb-3">Shipping Selection</h1>
+      <p class="lead mb-2">Enter and review your shipping details below</p>
     </div>
-</section>
+  </section>
 
-
-<!-- Shipping Selection Form -->
-<section class="py-5">
+  <!-- Shipping Selection Form -->
+  <section class="py-5">
     <div class="container">
-        <div class="form-card">
-            <div class="form-header text-center mb-4">
-                <h2><i class="fas fa-box-open me-2"></i>Shipping Carrier Information</h2>
-            </div>
+      <div class="form-card p-4 shadow-lg rounded bg-light">
+        <div class="form-header text-center mb-4">
+          <h2><i class="fas fa-truck me-2"></i>Shipping Carrier Information</h2>
+        </div>
 
-            <form id="shippingForm">
-                <!--Shipping Address -->
-                <div class="mb-3">
-                    <label for="shippingAddress" class="form-label required-label">Address:</label>
-                    <input type="text" class="form-control" id="shippingAddress" placeholder="Enter Address" required>
-                </div>
+        <!-- AngularJS Shipping Form -->
+        <form novalidate>
+          <div class="mb-3">
+            <label for="address" class="form-label fw-semibold">Address:</label>
+            <input type="text" id="address" class="form-control" placeholder="Enter address" ng-model="shipping.address" required>
+          </div>
 
-        <!-- Shipping City and Shipping State-->
-        <!-- Changed by Intizor — Applied Bootstrap grid to City/State fields -->
-        <div class="row mb-3">
+          <div class="row mb-3">
             <div class="col-md-6">
-                <label for="shippingCity" class="form-label required-label">City:</label>
-                <input type="text" class="form-control" id="shippingCity" placeholder="Enter City" required>
+              <label for="city" class="form-label fw-semibold">City:</label>
+              <input type="text" id="city" class="form-control" placeholder="Enter city" ng-model="shipping.city" required>
             </div>
-        <div class="col-md-6">
-            <label for="shippingState" class="form-label required-label">State:</label>
-            <input type="text" class="form-control" id="shippingState" placeholder="Enter State" required>
-          </div>
-        </div>
-
-        <!-- Shipping Zipcode -->
-        <!-- Changed by Intizor — Adjusted Zipcode field width and Made Shipping Carrier Category fit next to it -->
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <label for="shippingZipcode" class="form-label required-label">Zipcode:</label>
-            <input type="text" class="form-control" id="shippingZipcode" placeholder="Enter Zipcode" required>
+            <div class="col-md-6">
+              <label for="state" class="form-label fw-semibold">State:</label>
+              <input type="text" id="state" class="form-control" placeholder="Enter state" ng-model="shipping.state" required>
+            </div>
           </div>
 
-                <!-- Shipping Carrier Category -->
-                <div class="mb-3">
-                    <label for="shippingCarrier" class="form-label required-label">Shipping Carrier:</label>
-                    <select class="form-select" id="shippingCarrier" required>
-                        <option value="" selected disabled>Select a shipping carrier:</option>
-                        <option>FedEx</option>
-                        <option>UPS</option>
-                        <option>USPS</option>
-                        <option>DHL Express</option>
-                        <option>Amazon Logistics</option>
-                    </select>
-                </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="zip" class="form-label fw-semibold">ZIP Code:</label>
+              <input type="text" id="zip" class="form-control" placeholder="Enter ZIP Code" ng-model="shipping.zip" required>
+            </div>
+            <div class="col-md-6">
+              <label for="carrier" class="form-label fw-semibold">Shipping Carrier:</label>
+              <select id="carrier" class="form-select" ng-model="shipping.carrier" required>
+                <option value="" disabled selected>Select Carrier</option>
+                <option>FedEx</option>
+                <option>UPS</option>
+                <option>DHL</option>
+                <option>USPS</option>
+              </select>
+            </div>
+          </div>
 
-                <!-- Shipping Method Category -->
-                <div class="mb-3">
-                    <label for="shippingMethod" class="form-label required-label">Shipping Method:</label>
-                    <select class="form-select" id="shippingMethod" required>
-                        <option value="" selected disabled>Select a shipping method:</option>
-                        <option>1st Day</option>
-                        <option>2nd Day</option>
-                        <option>3rd Day</option>
-                        <option>4th Day</option>
-                        <option>5th Day</option>
-                    </select>
-                </div>
+          <div class="mb-4">
+            <label for="method" class="form-label fw-semibold">Shipping Method:</label>
+            <select id="method" class="form-select" ng-model="shipping.method" required>
+              <option value="" disabled selected>Select Method</option>
+              <option>Overnight</option>
+              <option>2nd Day</option>
+              <option>Ground</option>
+            </select>
+          </div>
 
-                <!-- Buttons -->
-                <button type="submit" class="btn btn-submit mt-3">Submit</button>
-                <button type="reset" class="btn btn-reset mt-2">Reset</button>
-            </form>
-        </div>
+          <div class="d-flex justify-content-center gap-3">
+            <button type="button" class="btn btn-success px-4" ng-click="displayJSON()">
+              <i class="fas fa-paper-plane me-2"></i>Submit
+            </button>
+            <button type="reset" class="btn btn-outline-secondary px-4" ng-click="clearForm()">
+              <i class="fas fa-undo me-2"></i>Reset
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- JSON Output -->
+      <div class="mt-5" ng-show="showJSON">
+        <h4 class="fw-bold mb-3">Shipping Information JSON:</h4>
+        <pre class="bg-dark text-light p-3 rounded">{{ shipping | json }}</pre>
+      </div>
     </div>
-</section>
+  </section>
 
-
-
-
-
-
-<!-- Footer -->
-<footer class="footer py-4 mt-5">
+  <!-- Footer -->
+  <footer class="footer py-4 mt-5 bg-light border-top">
     <div class="container text-center">
-        <p class="mb-0">&copy; 2023 Gadget Gurus. All rights reserved.</p>
+      <p class="mb-0">&copy; 2025 Gadget Gurus. All rights reserved.</p>
     </div>
-</footer>
+  </footer>
 
+  <!-- AngularJS Script -->
+  <script>
+    /* AngularJS Developer: Hemesvar Jayanthi Narendran */
+    const app = angular.module('shippingApp', []);
+    app.controller('ShippingController', function($scope) {
+      $scope.shipping = {};
+      $scope.showJSON = false;
+
+      $scope.displayJSON = function() {
+        if ($scope.shipping.address && $scope.shipping.city && $scope.shipping.state && $scope.shipping.zip && $scope.shipping.carrier && $scope.shipping.method) {
+          $scope.showJSON = true;
+        } else {
+          alert("Please fill out all fields before submitting.");
+        }
+      };
+
+      $scope.clearForm = function() {
+        $scope.shipping = {};
+        $scope.showJSON = false;
+      };
+    });
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
-
