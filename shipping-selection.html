@@ -14,7 +14,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 </head>
 
-<body ng-controller="ShippingController">
+<body class="shipping-selection" ng-controller="ShippingController">
   <!-- HTML Developer: [Prudhivi Jandhyala] -->
   <!-- AngularJS Developer: [Hemesvar Jayanthi Narendran] -->
   <!-- Bootstrap & CSS Developer: [Intizor Hoshimova] -->
@@ -43,7 +43,7 @@
   <section class="hero-section py-5">
     <div class="container text-center py-3">
       <h1 class="display-5 fw-bold mb-3">Shipping Selection</h1>
-      <p class="lead mb-2">Enter and review your shipping details below</p>
+      <p class="lead mb-2">Manage and Update Your Shipping Details</p>
     </div>
   </section>
 
@@ -57,11 +57,13 @@
 
         <!-- AngularJS Shipping Form -->
         <form novalidate>
+          <!-- Address -->
           <div class="mb-3">
             <label for="address" class="form-label fw-semibold">Address:</label>
             <input type="text" id="address" class="form-control" placeholder="Enter address" ng-model="shipping.address" required>
           </div>
 
+          <!-- City & State -->
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="city" class="form-label fw-semibold">City:</label>
@@ -73,6 +75,7 @@
             </div>
           </div>
 
+          <!-- ZIP & Carrier -->
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="zip" class="form-label fw-semibold">ZIP Code:</label>
@@ -90,6 +93,7 @@
             </div>
           </div>
 
+          <!-- Method -->
           <div class="mb-4">
             <label for="method" class="form-label fw-semibold">Shipping Method:</label>
             <select id="method" class="form-select" ng-model="shipping.method" required>
@@ -100,11 +104,12 @@
             </select>
           </div>
 
+          <!-- Buttons -->
           <div class="d-flex justify-content-center gap-3">
-            <button type="button" class="btn btn-success px-4" ng-click="displayJSON()">
+            <button type="button" class="btn btn-submit px-4" ng-click="displayJSON()">
               <i class="fas fa-paper-plane me-2"></i>Submit
             </button>
-            <button type="reset" class="btn btn-outline-secondary px-4" ng-click="clearForm()">
+            <button type="reset" class="btn btn-reset px-4" ng-click="clearForm()">
               <i class="fas fa-undo me-2"></i>Reset
             </button>
           </div>
@@ -126,22 +131,32 @@
     </div>
   </footer>
 
-  <!-- AngularJS Script -->
+  <!-- AngularJS Logic -->
   <script>
     /* AngularJS Developer: Hemesvar Jayanthi Narendran */
     const app = angular.module('shippingApp', []);
+
     app.controller('ShippingController', function($scope) {
       $scope.shipping = {};
       $scope.showJSON = false;
 
+      // Display JSON when form is valid
       $scope.displayJSON = function() {
-        if ($scope.shipping.address && $scope.shipping.city && $scope.shipping.state && $scope.shipping.zip && $scope.shipping.carrier && $scope.shipping.method) {
+        if (
+          $scope.shipping.address &&
+          $scope.shipping.city &&
+          $scope.shipping.state &&
+          $scope.shipping.zip &&
+          $scope.shipping.carrier &&
+          $scope.shipping.method
+        ) {
           $scope.showJSON = true;
         } else {
-          alert("Please fill out all fields before submitting.");
+          alert("⚠️ Please fill out all fields before submitting.");
         }
       };
 
+      // Clear form + hide JSON
       $scope.clearForm = function() {
         $scope.shipping = {};
         $scope.showJSON = false;
