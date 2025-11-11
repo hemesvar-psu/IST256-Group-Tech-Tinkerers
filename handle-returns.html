@@ -4,15 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gadget Gurus - Handle Returns</title>
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- ✅ jQuery for AJAX (Hemesvar Contribution) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
+
 <body>
 
 <!-- HTML Developer: [Prudhivi Jandhyala] -->
-<!-- Javascript: Prudhivi Jandhyala -->
-<!-- JSON: Prudhivi Jandhyala -->
+<!-- JavaScript Developer: [Prudhivi Jandhyala] -->
+<!-- JSON Developer: [Prudhivi Jandhyala] -->
+<!-- AJAX Developer: [Hemesvar Jayanthi Narendran] -->
 
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -101,92 +112,89 @@
 
         <!-- JSON Output -->
         <div class="mt-4">
-            <h4 class="text-center">JSON Product Document</h4>
+            <h4 class="text-center">JSON Return Document</h4>
             <pre id="jsonOutput" class="bg-light p-3 border rounded"></pre>
         </div>
     </div>
 </section>
 
-<!-- Footer -->
-<footer class="footer py-4 mt-5 bg-light border-top text-center">
-    <div class="container">
-        <p class="mb-0">&copy; 2025 Gadget Gurus. All rights reserved.</p>
-    </div>
-</footer>
-
+<!--  JavaScript (Search + JSON + AJAX) -->
 <script>
-    // Fake product list (for demo)
+    // Fake Orders
     const fakeOrders = [
         { id: "ORD123456", name: "Wireless Headphones" },
         { id: "ORD234567", name: "Smartwatch Series 5" },
         { id: "ORD345678", name: "Bluetooth Speaker" }
     ];
 
-    // Search behavior
+    // Search System
     document.getElementById("searchForm").addEventListener("submit", e => {
         e.preventDefault();
         const term = document.getElementById("searchInput").value.trim().toLowerCase();
-        const resultDiv = document.getElementById("searchResult");
-        const found = fakeOrders.find(
-            o => o.id.toLowerCase() === term || o.name.toLowerCase().includes(term)
+        const found = fakeOrders.find(o =>
+            o.id.toLowerCase() === term ||
+            o.name.toLowerCase().includes(term)
         );
 
+        const div = document.getElementById("searchResult");
         if (found) {
-            resultDiv.innerHTML = `<strong>Found:</strong> ${found.name} (${found.id})`;
+            div.innerHTML = `<strong>Found:</strong> ${found.name} (${found.id})`;
             document.getElementById("orderId").value = found.id;
             document.getElementById("productName").value = found.name;
         } else {
-            resultDiv.innerHTML = `<span class="text-danger">No order found for "${term}".</span>`;
+            div.innerHTML = `<span class="text-danger">No results for "${term}".</span>`;
         }
     });
 
-    // Return form validation & JSON generation
-    document.getElementById("returnForm").addEventListener("submit", e => {
+    // HEMESVAR AJAX + JSON LOGIC
+    $("#returnForm").submit(function (e) {
         e.preventDefault();
 
-        const orderId = document.getElementById("orderId").value.trim();
-        const productName = document.getElementById("productName").value.trim();
-        const reason = document.getElementById("reason").value.trim();
-        const returnType = document.getElementById("returnType").value;
-        const returnDate = document.getElementById("returnDate").value;
-
-        if (!orderId || !productName || !reason || !returnType || !returnDate) {
-            showReturnAlert("Please complete all required fields.", "danger");
-            return;
-        }
-
-        // Create JSON Product Document
-        const productReturn = {
-            orderId,
-            productName,
-            reason,
-            returnType,
-            returnDate,
-            processedBy: "Prudhivi Jandhyala",
-            timestamp: new Date().toLocaleString()
+        let returnObj = {
+            orderId: $("#orderId").val().trim(),
+            productName: $("#productName").val().trim(),
+            reason: $("#reason").val().trim(),
+            returnType: $("#returnType").val(),
+            returnDate: $("#returnDate").val(),
+            processedBy: "Hemesvar Jayanthi Narendran",
+            timestamp: new Date().toISOString()
         };
 
-        // Display JSON on page
-        document.getElementById("jsonOutput").textContent = JSON.stringify(productReturn, null, 4);
+        // Show JSON
+        $("#jsonOutput").text(JSON.stringify(returnObj, null, 4));
 
-        showReturnAlert("Return request submitted successfully!", "success");
-        e.target.reset();
+        // ✅ AJAX POST to NodeJS
+        $.ajax({
+            url: "http://ist256.up.ist.psu.edu:3006/returns", 
+            type: "POST",
+            data: JSON.stringify(returnObj),
+            contentType: "application/json",
+
+            success: function (response) {
+                showReturnAlert("✅ Return submitted to server!", "success");
+                console.log(response);
+            },
+            error: function (err) {
+                showReturnAlert("❌ Error sending data to server.", "danger");
+                console.error(err);
+            }
+        });
+
+        this.reset();
     });
 
-    // Alert helper
-    function showReturnAlert(message, type = "success") {
+    // Alert Helper
+    function showReturnAlert(msg, type) {
         document.getElementById("returnAlert").innerHTML =
             `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
-        ${message}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      </div>`;
+                ${msg}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>`;
     }
 </script>
 
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-<script src="app.js"></script>
+
 </body>
 </html>
-
-
