@@ -4,61 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gadget Gurus - Shopper Management</title>
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
+
 <body>
 <!-- HTML Developer: [Prudhivi Jandhyala] -->
-<!-- JSON & JavaScript Developer: Hemesvar -->
+<!-- JSON and AJAX Developer: Hemesvar Jayanthi Narendran -->
 
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <i class="fas fa-microchip"></i>
         <h1 class="mb-0 ms-2">Gadget Gurus</h1>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="shopper-management.html">
-                        <i class="fas fa-user-edit"></i> Shopper Management
-                    </a>
-                </li>
-                <li class = "nav-item">
-                    <a class="nav-link active" href="product-management.html">
-                        <i class="fas fa-cart-arrow-down"></i> Product Management
-                    </a>
-                </li>
-                <li class = "nav-item">
-                    <a class="nav-link" href="shopping-cart.html">
-                        <i class="fas fa-shopping-cart"></i> Shopping Cart
-                    </a>
-                </li>
-                <li class="nav-item"><a class="nav-link active" href="shipping-selection.html"><i class="fas fa-truck"></i> Shipping Selection</a></li>
-                <li class = "nav-item">
-                    <a class  = "nav-link" href="billing-details.html">
-                        <i class = "fas fa-money-bill"></i> Billing Details
-                    </a>
-                </li>
-                <li class ="nav-item">
-                    <a class = "nav-link active" href = "handle-returns.html">
-                        <i class="fas fa-box-open"></i> Handle Returns
-                    </a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="shopper-management.html"><i class="fas fa-user-edit"></i> Shopper Management</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-management.html"><i class="fas fa-cart-arrow-down"></i> Product Management</a></li>
+                <li class="nav-item"><a class="nav-link" href="shopping-cart.html"><i class="fas fa-shopping-cart"></i> Shopping Cart</a></li>
+                <li class="nav-item"><a class="nav-link" href="shipping-selection.html"><i class="fas fa-truck"></i> Shipping Selection</a></li>
+                <li class="nav-item"><a class="nav-link" href="billing-details.html"><i class="fas fa-money-bill"></i> Billing Details</a></li>
+                <li class="nav-item"><a class="nav-link" href="handle-returns.html"><i class="fas fa-box-open"></i> Handle Returns</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- Page Header -->
+<!-- Header -->
 <section class="hero-section py-5">
     <div class="container text-center py-3">
         <h1 class="display-5 fw-bold mb-3">🔧 Shopper Management</h1>
@@ -66,8 +53,7 @@
     </div>
 </section>
 
-<!-- Shopper Form Section -->
-<!-- Bootstrap Developer: [Intizor Hoshimova] -->
+<!-- Shopper Form -->
 <section class="py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -77,124 +63,117 @@
                         <h2 class="text-center mb-4">Shopper Information</h2>
                         <p class="text-center text-muted mb-4">Please fill in your details below</p>
 
-                        <!-- Shopper Form -->
                         <form id="shopperForm" novalidate>
                             <div class="mb-3">
-                                <label for="shopperEmail" class="form-label fw-semibold">Shopper Email Address <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="shopperEmail" placeholder="hello@world.com" required>
+                                <label for="shopperEmail" class="form-label fw-semibold">Shopper Email Address *</label>
+                                <input type="email" class="form-control" id="shopperEmail" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="shopperName" class="form-label fw-semibold">Shopper Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="shopperName" placeholder="Hello World" required>
+                                <label for="shopperName" class="form-label fw-semibold">Shopper Name *</label>
+                                <input type="text" class="form-control" id="shopperName" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="shopperPhone" class="form-label fw-semibold">Shopper Contact Phone Number <span class="badge bg-secondary ms-2">Optional</span></label>
-                                <input type="tel" class="form-control" id="shopperPhone" placeholder="1127781234">
+                                <label for="shopperPhone" class="form-label fw-semibold">Phone (Optional)</label>
+                                <input type="tel" class="form-control" id="shopperPhone">
                             </div>
 
                             <div class="mb-3">
-                                <label for="shopperAge" class="form-label fw-semibold">Shopper Age <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" id="shopperAge" placeholder="45" required min="13" max="120">
+                                <label for="shopperAge" class="form-label fw-semibold">Age *</label>
+                                <input type="number" class="form-control" id="shopperAge" required min="13" max="120">
                             </div>
 
                             <div class="mb-4">
-                                <label for="shopperAddress" class="form-label fw-semibold">Shopper Address <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="shopperAddress" placeholder="123 College Ave" required>
+                                <label for="shopperAddress" class="form-label fw-semibold">Address *</label>
+                                <input type="text" class="form-control" id="shopperAddress" required>
                             </div>
 
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-check me-2"></i>Sign Up</button>
-                                <button type="reset" class="btn btn-outline-secondary"><i class="fas fa-redo me-2"></i>Clear Form</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                                <button type="reset" class="btn btn-outline-secondary">Clear Form</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- JSON Output Section -->
+        <!-- JSON Output -->
         <div class="row justify-content-center mt-5">
             <div class="col-lg-8">
                 <h3 class="text-center mb-3">Generated JSON Document</h3>
-                <pre id="jsonOutput" class="bg-dark text-light p-3 rounded" style="min-height:150px; overflow:auto;">{/* JSON will appear here */}</pre>
+                <pre id="jsonOutput" class="bg-dark text-light p-3 rounded" style="min-height:150px;">{/* JSON will appear here */}</pre>
+
                 <div class="text-center mt-3">
-                    <button class="btn btn-danger" id="clearData"><i class="fas fa-trash me-2"></i>Clear All Saved Shoppers</button>
+                    <button class="btn btn-danger" id="clearData">Clear Saved Shoppers</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Back to Home Link -->
-<section class="py-4">
-    <div class="container text-center">
-        <a href="index.html" class="btn btn-outline-primary">
-            <i class="fas fa-arrow-left me-2"></i>Back to Home
-        </a>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer py-4 mt-5">
-    <div class="container text-center">
-        <p class="mb-0">&copy; 2023 Gadget Gurus. All rights reserved.</p>
-    </div>
-</footer>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
-<!-- JSON + JavaScript Functionality -->
+<!-- AJAX + JSON Script -->
 <script>
-    /* JSON Developer: Hemesvar Jayanthi Narendran */
-    (function() {
-        const form = document.getElementById('shopperForm');
-        const output = document.getElementById('jsonOutput');
-        const clearBtn = document.getElementById('clearData');
+/* AJAX Developer: Hemesvar Jayanthi Narendran */
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+$(document).ready(function () {
 
-            // Validate fields
-            if (!form.checkValidity()) {
-                form.classList.add('was-validated');
-                return;
+    $("#shopperForm").on("submit", function (e) {
+        e.preventDefault();
+
+        let shopper = {
+            email: $("#shopperEmail").val().trim(),
+            name: $("#shopperName").val().trim(),
+            phone: $("#shopperPhone").val().trim() || null,
+            age: Number($("#shopperAge").val()),
+            address: $("#shopperAddress").val().trim(),
+            updatedAt: new Date().toISOString()
+        };
+
+        //  Show on screen
+        $("#jsonOutput").text(JSON.stringify(shopper, null, 2));
+
+        // LocalStorage save
+        let shoppers = JSON.parse(localStorage.getItem("shoppers") || "[]");
+        let index = shoppers.findIndex(s => s.email === shopper.email);
+
+        if (index >= 0) shoppers[index] = shopper;
+        else shoppers.push(shopper);
+
+        localStorage.setItem("shoppers", JSON.stringify(shoppers));
+
+        // SEND TO NODEJS USING AJAX
+        $.ajax({
+            url: "http://ist256.up.ist.psu.edu:3006/shoppers",  
+            type: "POST",
+            data: JSON.stringify(shopper),
+            contentType: "application/json",
+            success: function (response) {
+                alert("✅ Shopper successfully sent to server!");
+                console.log("Server Response:", response);
+            },
+            error: function () {
+                alert("❌ Error sending shopper to server.");
             }
-
-            // Build JSON object
-            const shopper = {
-                email: document.getElementById('shopperEmail').value.trim(),
-                name: document.getElementById('shopperName').value.trim(),
-                phone: document.getElementById('shopperPhone').value.trim() || null,
-                age: Number(document.getElementById('shopperAge').value),
-                address: document.getElementById('shopperAddress').value.trim(),
-                updatedAt: new Date().toISOString()
-            };
-
-            // Display JSON on page
-            output.textContent = JSON.stringify(shopper, null, 2);
-
-            // Save to localStorage (update if exists)
-            const key = 'shoppers';
-            const shoppers = JSON.parse(localStorage.getItem(key) || '[]');
-            const idx = shoppers.findIndex(s => s.email.toLowerCase() === shopper.email.toLowerCase());
-            if (idx >= 0) shoppers[idx] = shopper; else shoppers.push(shopper);
-            localStorage.setItem(key, JSON.stringify(shoppers));
-
-            form.reset();
-            form.classList.remove('was-validated');
         });
 
-        // Clear localStorage shoppers
-        clearBtn.addEventListener('click', () => {
-            localStorage.removeItem('shoppers');
-            output.textContent = '{/* JSON will appear here */}';
-            alert('All saved shoppers have been cleared.');
-        });
-    })();
+        this.reset();
+    });
+
+    // Clear saved data
+    $("#clearData").click(function () {
+        localStorage.removeItem("shoppers");
+        $("#jsonOutput").text("{/* JSON will appear here */}");
+        alert("All saved shoppers cleared.");
+    });
+
+});
 </script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
