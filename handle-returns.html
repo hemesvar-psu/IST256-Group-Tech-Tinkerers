@@ -1,19 +1,69 @@
+<!-- HTML Developer: [Prudhivi Jandhyala] -->
+<!-- Javascript: Prudhivi Jandhyala -->
+<!-- JSON: Prudhivi Jandhyala -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gadget Gurus - Handle Returns</title>
+
+    <!-- Bootstrap and FontAwesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <script>
+        // Function to handle return form and show JSON document
+        function processReturnForm(event) {
+            event.preventDefault();
+
+            // Collect form data
+            const customerName = document.getElementById("customerName").value.trim();
+            const orderId = document.getElementById("orderId").value.trim();
+            const productId = document.getElementById("productId").value.trim();
+            const productName = document.getElementById("productName").value.trim();
+            const quantity = document.getElementById("quantity").value.trim();
+            const reason = document.getElementById("reason").value.trim();
+
+            // Field integrity checks
+            if (!customerName || !orderId || !productId || !productName || !quantity) {
+                alert("Please fill in all required fields before submitting.");
+                return;
+            }
+            if (isNaN(quantity) || quantity <= 0) {
+                alert("Quantity must be a valid positive number.");
+                return;
+            }
+
+            // Build JSON product document
+            const returnDocument = {
+                customerName: customerName,
+                orderId: orderId,
+                product: {
+                    productId: productId,
+                    productName: productName,
+                    quantity: parseInt(quantity),
+                    reason: reason || "No reason specified"
+                },
+                returnDate: new Date().toISOString()
+            };
+
+            // Display JSON document
+            const output = document.getElementById("jsonOutput");
+            output.textContent = JSON.stringify(returnDocument, null, 4);
+            output.classList.add("bg-light", "border", "p-3", "mt-3");
+        }
+    </script>
 </head>
 <body>
+
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <i class="fas fa-microchip"></i>
-        <h1 class="mb-0 ms-2">Gadget Gurus</h1>
+        <h1 class="mb-0 ms-2 text-white">Gadget Gurus</h1>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,74 +82,62 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="hero-section py-5 bg-light">
-    <div class="container text-center">
+<section class="hero-section py-5 text-center bg-light">
+    <div class="container">
         <h1 class="display-5 fw-bold mb-3">Handle Returns</h1>
-        <p class="lead">Search products, verify orders, and process customer returns easily.</p>
+        <p class="lead mb-2">Submit a product return request below.</p>
     </div>
 </section>
 
-<!-- Returns Section -->
-<section class="py-4">
-    <div class="container">
-        <!-- Search Bar -->
-        <div class="card shadow border-0 mb-4">
-            <div class="card-body">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search product by name or order ID" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Search</button>
-                </form>
+<!-- Return Form -->
+<section class="container py-5">
+    <form id="returnForm" onsubmit="processReturnForm(event)">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="customerName" class="form-label">Customer Name</label>
+                <input type="text" class="form-control" id="customerName" placeholder="Enter your full name" required>
+            </div>
+            <div class="col-md-6">
+                <label for="orderId" class="form-label">Order ID</label>
+                <input type="text" class="form-control" id="orderId" placeholder="Enter your order ID" required>
             </div>
         </div>
 
-        <!-- Return Form -->
-        <div class="card shadow border-0">
-            <div class="card-body">
-                <h5 class="card-title mb-3"><i class="fas fa-undo-alt"></i> Return Request Form</h5>
-                <form>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="orderId" class="form-label">Order ID</label>
-                            <input type="text" class="form-control" id="orderId" placeholder="ORD123456" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="productName" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="productName" placeholder="Wireless Headphones" required>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="reason" class="form-label">Reason for Return</label>
-                            <textarea class="form-control" id="reason" rows="3" placeholder="Describe the issue..." required></textarea>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="returnType" class="form-label">Return Type</label>
-                            <select class="form-select" id="returnType" required>
-                                <option value="">Choose...</option>
-                                <option>Refund</option>
-                                <option>Exchange</option>
-                                <option>Repair</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="returnDate" class="form-label">Return Date</label>
-                            <input type="date" class="form-control" id="returnDate" required>
-                        </div>
-                    </div>
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-success btn-lg"><i class="fas fa-check"></i> Submit Return</button>
-                    </div>
-                </form>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="productId" class="form-label">Product ID</label>
+                <input type="text" class="form-control" id="productId" placeholder="Enter product ID" required>
+            </div>
+            <div class="col-md-6">
+                <label for="productName" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="productName" placeholder="Enter product name" required>
             </div>
         </div>
-    </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" min="1" required>
+            </div>
+            <div class="col-md-8">
+                <label for="reason" class="form-label">Reason for Return</label>
+                <input type="text" class="form-control" id="reason" placeholder="Describe the issue (optional)">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Submit Return</button>
+    </form>
+
+    <h3 class="mt-5">Return JSON Document:</h3>
+    <pre id="jsonOutput"></pre>
 </section>
 
 <!-- Footer -->
 <footer class="footer py-4 mt-5 bg-light border-top text-center">
-    <div class="container">
-        <p class="mb-0">&copy; 2025 Gadget Gurus. All rights reserved.</p>
-    </div>
+    <p class="mb-0">&copy; 2025 Gadget Gurus. All rights reserved.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
